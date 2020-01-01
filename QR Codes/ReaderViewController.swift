@@ -65,11 +65,15 @@ class ReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
 
         captureSession.startRunning()
 	}
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
+    }
 
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
 		
-		previewLayer.frame = cameraContainerView.layer.bounds
+		previewLayer?.frame = cameraContainerView.layer.bounds
 		// Fix orientation
 		if let connection = self.previewLayer?.connection {
 			let orientation = self.view.window?.windowScene?.interfaceOrientation ?? UIInterfaceOrientation.portrait
@@ -138,8 +142,10 @@ class ReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
             guard let stringValue = readableObject.stringValue else { return }
 			
-			print("QR Code: \(stringValue)")
-			outputTextView.text = stringValue
+            if stringValue != outputTextView.text {
+                print("QR Code: \(stringValue)")
+                outputTextView.text = stringValue
+            }
         }
     }
 }
