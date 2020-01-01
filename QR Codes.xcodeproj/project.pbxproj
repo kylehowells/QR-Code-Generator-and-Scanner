@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		CCD40D7723BBFFDA004ACDD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD40D7623BBFFDA004ACDD7 /* AppDelegate.swift */; };
 		CCD40D7923BBFFDA004ACDD7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD40D7823BBFFDA004ACDD7 /* SceneDelegate.swift */; };
-		CCD40D7B23BBFFDA004ACDD7 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD40D7A23BBFFDA004ACDD7 /* FirstViewController.swift */; };
-		CCD40D7D23BBFFDA004ACDD7 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD40D7C23BBFFDA004ACDD7 /* SecondViewController.swift */; };
+		CCD40D7B23BBFFDA004ACDD7 /* GeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD40D7A23BBFFDA004ACDD7 /* GeneratorViewController.swift */; };
+		CCD40D7D23BBFFDA004ACDD7 /* ReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD40D7C23BBFFDA004ACDD7 /* ReaderViewController.swift */; };
 		CCD40D8023BBFFDA004ACDD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCD40D7E23BBFFDA004ACDD7 /* Main.storyboard */; };
 		CCD40D8223BBFFDD004ACDD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCD40D8123BBFFDD004ACDD7 /* Assets.xcassets */; };
 		CCD40D8523BBFFDD004ACDD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCD40D8323BBFFDD004ACDD7 /* LaunchScreen.storyboard */; };
@@ -20,8 +20,8 @@
 		CCD40D7323BBFFDA004ACDD7 /* QR Codes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QR Codes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCD40D7623BBFFDA004ACDD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CCD40D7823BBFFDA004ACDD7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CCD40D7A23BBFFDA004ACDD7 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		CCD40D7C23BBFFDA004ACDD7 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		CCD40D7A23BBFFDA004ACDD7 /* GeneratorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorViewController.swift; sourceTree = "<group>"; };
+		CCD40D7C23BBFFDA004ACDD7 /* ReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderViewController.swift; sourceTree = "<group>"; };
 		CCD40D7F23BBFFDA004ACDD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CCD40D8123BBFFDD004ACDD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CCD40D8423BBFFDD004ACDD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -60,8 +60,8 @@
 			children = (
 				CCD40D7623BBFFDA004ACDD7 /* AppDelegate.swift */,
 				CCD40D7823BBFFDA004ACDD7 /* SceneDelegate.swift */,
-				CCD40D7A23BBFFDA004ACDD7 /* FirstViewController.swift */,
-				CCD40D7C23BBFFDA004ACDD7 /* SecondViewController.swift */,
+				CCD40D7A23BBFFDA004ACDD7 /* GeneratorViewController.swift */,
+				CCD40D7C23BBFFDA004ACDD7 /* ReaderViewController.swift */,
 				CCD40D7E23BBFFDA004ACDD7 /* Main.storyboard */,
 				CCD40D8123BBFFDD004ACDD7 /* Assets.xcassets */,
 				CCD40D8323BBFFDD004ACDD7 /* LaunchScreen.storyboard */,
@@ -141,8 +141,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CCD40D7D23BBFFDA004ACDD7 /* SecondViewController.swift in Sources */,
-				CCD40D7B23BBFFDA004ACDD7 /* FirstViewController.swift in Sources */,
+				CCD40D7D23BBFFDA004ACDD7 /* ReaderViewController.swift in Sources */,
+				CCD40D7B23BBFFDA004ACDD7 /* GeneratorViewController.swift in Sources */,
 				CCD40D7723BBFFDA004ACDD7 /* AppDelegate.swift in Sources */,
 				CCD40D7923BBFFDA004ACDD7 /* SceneDelegate.swift in Sources */,
 			);
