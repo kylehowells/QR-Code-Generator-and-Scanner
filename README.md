@@ -4,7 +4,7 @@ Demonstrates how to generate a QR code image and how to scan a QR code with the 
 
 | GeneratorViewController.swift  |  ReaderViewController.swift  |
 :-------------------------:|:-------------------------:
-![](Screenshots/Gen.png)  |  ![](Screenshots/Scan.png)
+![](Screenshots/Gen.jpeg)  |  ![](Screenshots/Scan.jpeg)
 
 
 # Project Structure

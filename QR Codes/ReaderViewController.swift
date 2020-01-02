@@ -176,4 +176,3 @@ class ReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         }
     }
 }
-

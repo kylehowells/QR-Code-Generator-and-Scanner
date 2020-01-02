@@ -85,7 +85,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Generate QR Code" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Generate QR Code" image="qrcode" catalog="system" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="correctionLevelSegmentControl" destination="8QI-8S-3o0" id="zmj-sD-NAe"/>
                         <outlet property="imageView" destination="jkX-gb-Z6z" id="Sr3-tl-4Lx"/>
@@ -97,7 +97,7 @@
             </objects>
             <point key="canvasLocation" x="749.27536231884062" y="-320.08928571428572"/>
         </scene>
-        <!--Second-->
+        <!--Scan QR Code-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="ReaderViewController" customModule="QR_Codes" customModuleProvider="target" sceneMemberID="viewController">
@@ -113,7 +113,7 @@
                                 </constraints>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="INB-lT-sbJ">
-                                <rect key="frame" x="20" y="627.5" width="374" height="185.5"/>
+                                <rect key="frame" x="16" y="627.5" width="382" height="175.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -121,9 +121,10 @@
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES" shipmentTrackingNumber="YES" flightNumber="YES" lookupSuggestion="YES"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKc-Nh-hfB">
-                                <rect key="frame" x="171.5" y="589.5" width="71" height="30"/>
+                                <rect key="frame" x="161.5" y="589.5" width="91" height="30"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="6" maxX="10" maxY="6"/>
                                 <state key="normal" title="Start/Stop"/>
                                 <connections>
                                     <action selector="startStopPressed:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="o6q-lJ-RQi"/>
@@ -132,20 +133,20 @@
                         </subviews>
                         <color key="backgroundColor" red="0.95686274509803915" green="0.96862745098039216" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="O1u-W8-tvY" firstAttribute="trailing" secondItem="INB-lT-sbJ" secondAttribute="trailing" constant="20" id="03j-5s-S3t"/>
+                            <constraint firstItem="O1u-W8-tvY" firstAttribute="trailing" secondItem="INB-lT-sbJ" secondAttribute="trailing" constant="16" id="03j-5s-S3t"/>
                             <constraint firstItem="n5z-wA-jD8" firstAttribute="height" secondItem="QS5-Rx-YEW" secondAttribute="height" multiplier="3/5" id="6m2-BP-2Hx"/>
                             <constraint firstItem="n5z-wA-jD8" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="Pdx-BJ-4bR"/>
                             <constraint firstItem="mKc-Nh-hfB" firstAttribute="top" secondItem="n5z-wA-jD8" secondAttribute="bottom" constant="8" id="aqW-DA-0tr"/>
                             <constraint firstItem="n5z-wA-jD8" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" id="dwb-wM-0UD"/>
-                            <constraint firstItem="O1u-W8-tvY" firstAttribute="bottom" secondItem="INB-lT-sbJ" secondAttribute="bottom" id="eub-hl-OZ9"/>
-                            <constraint firstItem="INB-lT-sbJ" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" constant="20" id="fNw-SN-Io2"/>
+                            <constraint firstItem="O1u-W8-tvY" firstAttribute="bottom" secondItem="INB-lT-sbJ" secondAttribute="bottom" constant="10" id="eub-hl-OZ9"/>
+                            <constraint firstItem="INB-lT-sbJ" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" constant="16" id="fNw-SN-Io2"/>
                             <constraint firstItem="INB-lT-sbJ" firstAttribute="top" secondItem="mKc-Nh-hfB" secondAttribute="bottom" constant="8" id="nZR-He-ct6"/>
                             <constraint firstItem="mKc-Nh-hfB" firstAttribute="centerX" secondItem="O1u-W8-tvY" secondAttribute="centerX" id="oZW-1c-Gst"/>
                             <constraint firstItem="O1u-W8-tvY" firstAttribute="trailing" secondItem="n5z-wA-jD8" secondAttribute="trailing" id="p9B-Yz-MmM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Scan QR Code" image="qrcode.viewfinder" catalog="system" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="cameraContainerHeightConstraint" destination="6m2-BP-2Hx" id="Sfh-vU-ZNW"/>
                         <outlet property="cameraContainerView" destination="n5z-wA-jD8" id="ukW-Y3-BYl"/>
@@ -177,7 +178,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="qrcode" catalog="system" width="64" height="56"/>
+        <image name="qrcode.viewfinder" catalog="system" width="64" height="56"/>
     </resources>
 </document>
