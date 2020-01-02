@@ -16,6 +16,13 @@ class ReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
 	@IBOutlet weak var outputTextView: UITextView!
 	var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
+    
+    var qrCodeBounds:UIView = {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        view.layer.borderColor = UIColor.green.cgColor
+        view.layer.borderWidth = 3
+        return view
+    }()
 
 	// MARK: View Life Cycle
 	
@@ -27,7 +34,7 @@ class ReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
 		// Setup Camera Capture
 		captureSession = AVCaptureSession()
 
-		// Get which camera we will use (there are normally between 2 to 4 camera 'devices' on iPhones
+		// Get the default camera (there are normally between 2 to 4 camera 'devices' on iPhones)
         guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
         let videoInput: AVCaptureDeviceInput
 
@@ -40,7 +47,7 @@ class ReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         if (captureSession.canAddInput(videoInput)) {
             captureSession.addInput(videoInput)
         } else {
-            failed()
+            failed() // Simulator mostly
             return
         }
 
@@ -63,6 +70,9 @@ class ReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         previewLayer.videoGravity = .resizeAspectFill
         cameraContainerView.layer.addSublayer(previewLayer)
 
+        qrCodeBounds.alpha = 0
+        cameraContainerView.addSubview(qrCodeBounds)
+        
         captureSession.startRunning()
 	}
     
@@ -133,6 +143,18 @@ class ReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         present(ac, animated: true)
         captureSession = nil
     }
+    
+    
+    func showQRCodeBounds(frame: CGRect?) {
+        guard let frame = frame else { return }
+        
+        qrCodeBounds.layer.removeAllAnimations() // resets any previous animations and cancels the fade out
+        qrCodeBounds.alpha = 1
+        qrCodeBounds.frame = frame
+        UIView.animate(withDuration: 0.2, delay: 1, options: [], animations: { // after 1 second fade away
+            self.qrCodeBounds.alpha = 0
+        })
+    }
 	
 	
 	// MARK: AVCaptureMetadataOutputObjectsDelegate
@@ -141,11 +163,16 @@ class ReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         if let metadataObject = metadataObjects.first {
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
             guard let stringValue = readableObject.stringValue else { return }
-			
+            
+            // Get text value
             if stringValue != outputTextView.text {
                 print("QR Code: \(stringValue)")
                 outputTextView.text = stringValue
             }
+            
+            // Show bounds
+            let qrCodeObject = previewLayer.transformedMetadataObject(for: readableObject)
+            showQRCodeBounds(frame: qrCodeObject?.bounds)
         }
     }
 }
