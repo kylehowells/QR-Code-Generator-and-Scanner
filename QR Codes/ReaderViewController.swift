@@ -29,10 +29,10 @@ class ReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		view.backgroundColor = UIColor.black
+		self.view.backgroundColor = UIColor.black
 		
 		// Setup Camera Capture
-		captureSession = AVCaptureSession()
+		self.captureSession = AVCaptureSession()
 
 		// Get the default camera (there are normally between 2 to 4 camera 'devices' on iPhones)
         guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
@@ -44,36 +44,36 @@ class ReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             return
         }
 
-        if (captureSession.canAddInput(videoInput)) {
-            captureSession.addInput(videoInput)
+		if (self.captureSession.canAddInput(videoInput)) {
+			self.captureSession.addInput(videoInput)
         } else {
-            failed() // Simulator mostly
+			self.failed() // Simulator mostly
             return
         }
 
 		// Now the camera is setup add a metadata output
         let metadataOutput = AVCaptureMetadataOutput()
 
-        if (captureSession.canAddOutput(metadataOutput)) {
-            captureSession.addOutput(metadataOutput)
+		if (self.captureSession.canAddOutput(metadataOutput)) {
+			self.captureSession.addOutput(metadataOutput)
 
             metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             metadataOutput.metadataObjectTypes = [.qr] // Also have things like Face, body, cats
         } else {
-            failed()
+			self.failed()
             return
         }
 
 		// Setup the UI to show the camera
-        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        previewLayer.frame = view.layer.bounds
-        previewLayer.videoGravity = .resizeAspectFill
-        cameraContainerView.layer.addSublayer(previewLayer)
+		self.previewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
+		self.previewLayer.frame = view.layer.bounds
+		self.previewLayer.videoGravity = .resizeAspectFill
+		self.cameraContainerView.layer.addSublayer(self.previewLayer)
 
-        qrCodeBounds.alpha = 0
-        cameraContainerView.addSubview(qrCodeBounds)
+		self.qrCodeBounds.alpha = 0
+		self.cameraContainerView.addSubview(self.qrCodeBounds)
         
-        captureSession.startRunning()
+		self.captureSession.startRunning()
 	}
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -83,7 +83,7 @@ class ReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
 		
-		previewLayer?.frame = cameraContainerView.layer.bounds
+		self.previewLayer?.frame = self.cameraContainerView.layer.bounds
 		// Fix orientation
 		if let connection = self.previewLayer?.connection {
 			let orientation = self.view.window?.windowScene?.interfaceOrientation ?? UIInterfaceOrientation.portrait
@@ -107,27 +107,27 @@ class ReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
 	override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if (captureSession?.isRunning == false) {
-            captureSession?.startRunning()
+		if (self.captureSession?.isRunning == false) {
+			self.captureSession?.startRunning()
         }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        if (captureSession?.isRunning == true) {
-            captureSession?.stopRunning()
+		if (self.captureSession?.isRunning == true) {
+			self.captureSession?.stopRunning()
         }
     }
 	
 	@IBAction func startStopPressed(_ sender: Any) {
-		if (captureSession?.isRunning == true) {
-            captureSession?.stopRunning()
-			cameraContainerHeightConstraint.priority = UILayoutPriority(500)
+		if (self.captureSession?.isRunning == true) {
+			self.captureSession?.stopRunning()
+			self.cameraContainerHeightConstraint.priority = UILayoutPriority(500)
         }
 		else {
-            captureSession?.startRunning()
-			cameraContainerHeightConstraint.priority = UILayoutPriority(1000)
+			self.captureSession?.startRunning()
+			self.cameraContainerHeightConstraint.priority = UILayoutPriority(1000)
 		}
 		
 		UIView.animate(withDuration: 0.2, animations: {
@@ -141,16 +141,16 @@ class ReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         let ac = UIAlertController(title: "Scanning failed", message: nil, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Dismiss", style: .default))
         present(ac, animated: true)
-        captureSession = nil
+		self.captureSession = nil
     }
     
     
     func showQRCodeBounds(frame: CGRect?) {
         guard let frame = frame else { return }
         
-        qrCodeBounds.layer.removeAllAnimations() // resets any previous animations and cancels the fade out
-        qrCodeBounds.alpha = 1
-        qrCodeBounds.frame = frame
+		self.qrCodeBounds.layer.removeAllAnimations() // resets any previous animations and cancels the fade out
+		self.qrCodeBounds.alpha = 1
+		self.qrCodeBounds.frame = frame
         UIView.animate(withDuration: 0.2, delay: 1, options: [], animations: { // after 1 second fade away
             self.qrCodeBounds.alpha = 0
         })
@@ -167,12 +167,12 @@ class ReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             // Get text value
             if stringValue != outputTextView.text {
                 print("QR Code: \(stringValue)")
-                outputTextView.text = stringValue
+				self.outputTextView.text = stringValue
             }
             
             // Show bounds
-            let qrCodeObject = previewLayer.transformedMetadataObject(for: readableObject)
-            showQRCodeBounds(frame: qrCodeObject?.bounds)
+			let qrCodeObject = self.previewLayer.transformedMetadataObject(for: readableObject)
+			self.showQRCodeBounds(frame: qrCodeObject?.bounds)
         }
     }
 }

@@ -19,21 +19,21 @@ class GeneratorViewController: UIViewController, UITextViewDelegate {
 		super.viewDidLoad()
 		
 		self.textView.delegate = self
-		registerForKeyboardNotifications()
+		self.registerForKeyboardNotifications()
 		
-		let longPress = UILongPressGestureRecognizer(target: self, action: #selector(shareImage))
+		let longPress = UILongPressGestureRecognizer(target: self, action: #selector(self.shareImage))
 		self.imageView.addGestureRecognizer(longPress)
 		self.imageView.isUserInteractionEnabled = true // UIImageView is(was?) the only UIView class this defaults to false
 		
-		refreshQRCode()
+		self.refreshQRCode()
 	}
 	
 	@IBAction func correctionLevelChanged(_ sender: Any) {
-		refreshQRCode()
+		self.refreshQRCode()
 	}
 	
 	func textViewDidChange(_ textView: UITextView) {
-		refreshQRCode()
+		self.refreshQRCode()
 	}
 	
 	// MARK: - Generate QR Code
@@ -42,7 +42,7 @@ class GeneratorViewController: UIViewController, UITextViewDelegate {
 		let text:String = self.textView.text
 		
 		// Generate the image
-		guard let qrCode:CIImage = createQRCodeForString(text) else {
+		guard let qrCode:CIImage = self.createQRCodeForString(text) else {
 			print("Failed to generate QRCode")
 			self.imageView.image = nil
 			return
@@ -71,7 +71,7 @@ class GeneratorViewController: UIViewController, UITextViewDelegate {
 		// Error correction
 		let values = ["L", "M", "Q", "H"]
 		// Trick to limit the result to the bounds (0, array.maxIndex) - max(_MIN_, min(_value_, _MAX_))
-		let index = max(0, min(correctionLevelSegmentControl.selectedSegmentIndex, (values.count-1)))
+		let index = max(0, min(self.correctionLevelSegmentControl.selectedSegmentIndex, (values.count-1)))
 		let correctionLevel = values[index]
 		qrFilter?.setValue(correctionLevel, forKey: "inputCorrectionLevel")
 		
@@ -87,7 +87,7 @@ class GeneratorViewController: UIViewController, UITextViewDelegate {
 		guard let image = self.imageView.image else {
 			return
 		}
-        let activityViewController = UIActivityViewController(activityItems: [ sharableImage(image) ], applicationActivities: nil)
+		let activityViewController = UIActivityViewController(activityItems: [ self.sharableImage(image) ], applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.imageView // so that iPads won't crash
         // present the view controller
         self.present(activityViewController, animated: true, completion: nil)
@@ -109,8 +109,8 @@ class GeneratorViewController: UIViewController, UITextViewDelegate {
 	// MARK: - Keyboard Handling
 	
 	func registerForKeyboardNotifications(){
-		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown), name: UIResponder.keyboardDidShowNotification, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden), name: UIResponder.keyboardWillHideNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown), name: UIResponder.keyboardDidShowNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillBeHidden), name: UIResponder.keyboardWillHideNotification, object: nil)
 	}
 	
 	@objc func keyboardWasShown(_ aNotification: NSNotification) {
