@@ -10,6 +10,7 @@ import UIKit
 import CoreImage
 
 class GeneratorViewController: UIViewController, UITextViewDelegate {
+	
 	@IBOutlet weak var scrollView: UIScrollView!
 	@IBOutlet weak var imageView: UIImageView!
 	@IBOutlet weak var textView: UITextView!
@@ -20,6 +21,9 @@ class GeneratorViewController: UIViewController, UITextViewDelegate {
 		
 		self.textView.delegate = self
 		self.registerForKeyboardNotifications()
+		
+		self.imageView.layer.magnificationFilter = .nearest
+		self.imageView.layer.minificationFilter = .nearest
 		
 		let longPress = UILongPressGestureRecognizer(target: self, action: #selector(self.shareImage))
 		self.imageView.addGestureRecognizer(longPress)
@@ -48,13 +52,8 @@ class GeneratorViewController: UIViewController, UITextViewDelegate {
 			return
 		}
 		
-		// Rescale to fit the view (otherwise it is only something like 100px)
-		let viewWidth = self.imageView.bounds.size.width;
-		let scale = viewWidth/qrCode.extent.size.width;
-		let scaledImage = qrCode.transformed(by: CGAffineTransform(scaleX: scale, y: scale))
-		
 		// Display
-		self.imageView.image = UIImage(ciImage: scaledImage)
+		self.imageView.image = UIImage(ciImage: qrCode)
 	}
 	
 	
@@ -62,7 +61,7 @@ class GeneratorViewController: UIViewController, UITextViewDelegate {
 	/// This string is converted to ISOLatin1 string encoding, not the usual UTF8.
 	/// Then the resulting binary data is past as the input to a CIFilter which makes the QRCode for us
 	/// - Parameter text: The text to turn into a QRCode
-	func createQRCodeForString(_ text: String) -> CIImage?{
+	func createQRCodeForString(_ text: String) -> CIImage? {
 		let data = text.data(using: .isoLatin1)
 		
 		let qrFilter = CIFilter(name: "CIQRCodeGenerator")
@@ -87,18 +86,24 @@ class GeneratorViewController: UIViewController, UITextViewDelegate {
 		guard let image = self.imageView.image else {
 			return
 		}
+		
 		let activityViewController = UIActivityViewController(activityItems: [ self.sharableImage(image) ], applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.imageView // so that iPads won't crash
         // present the view controller
         self.present(activityViewController, animated: true, completion: nil)
 	}
+	
 	// Lots of the share extensions don't seem to handle UIImage's originating from CoreImage images properly
-	// Even though it shouldn't be needed, re-rendering it seems to help reliablity of some sharing options
-	func sharableImage(_ image: UIImage) -> UIImage{
-		let renderer = UIGraphicsImageRenderer(size: image.size, format: image.imageRendererFormat)
-		let img = renderer.image { ctx in
-			image.draw(at: CGPoint.zero)
-		}
+	// Even though it shouldn't be needed, re-rendering it seems to help reliability of some sharing options
+	func sharableImage(_ image: UIImage) -> UIImage
+	{
+		let sharableWidth: CGFloat = max(image.size.width, 512)
+		let renderSize: CGSize = CGSize(width: sharableWidth, height: sharableWidth)
+		
+		let renderer = UIGraphicsImageRenderer(size: renderSize, format: image.imageRendererFormat)
+		let img = renderer.image(actions: { ctx in
+			image.draw(in: CGRect(origin: .zero, size: renderSize))
+		})
 		return img
 	}
 	
@@ -121,9 +126,10 @@ class GeneratorViewController: UIViewController, UITextViewDelegate {
 		self.scrollView.scrollIndicatorInsets = contentInsets
 		
 		// If active text field is hidden by keyboard, scroll it so it's visible
-		// Your application might not need or want this behavior.
+		// Your application might not need or want this behaviour.
 		var aRect:CGRect = self.view.frame
 		aRect.size.height -= kbSize.height
+		
 		if (!aRect.contains(self.textView.frame.origin)) {
 			let scrollPoint:CGPoint = CGPoint(x: 0, y: self.textView.frame.origin.y-kbSize.height)
 			self.scrollView.setContentOffset(scrollPoint, animated: true)
@@ -136,4 +142,3 @@ class GeneratorViewController: UIViewController, UITextViewDelegate {
 		self.scrollView.scrollIndicatorInsets = contentInsets;
 	}
 }
-

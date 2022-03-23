@@ -33,9 +33,10 @@ class ReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
 		
 		// Setup Camera Capture
 		self.captureSession = AVCaptureSession()
-
+		
 		// Get the default camera (there are normally between 2 to 4 camera 'devices' on iPhones)
         guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
+		
         let videoInput: AVCaptureDeviceInput
 
         do {
@@ -120,7 +121,8 @@ class ReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         }
     }
 	
-	@IBAction func startStopPressed(_ sender: Any) {
+	@IBAction func startStopPressed(_ sender: Any)
+	{
 		if (self.captureSession?.isRunning == true) {
 			self.captureSession?.stopRunning()
 			self.cameraContainerHeightConstraint.priority = UILayoutPriority(500)
@@ -151,6 +153,7 @@ class ReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
 		self.qrCodeBounds.layer.removeAllAnimations() // resets any previous animations and cancels the fade out
 		self.qrCodeBounds.alpha = 1
 		self.qrCodeBounds.frame = frame
+		
         UIView.animate(withDuration: 0.2, delay: 1, options: [], animations: { // after 1 second fade away
             self.qrCodeBounds.alpha = 0
         })
@@ -175,4 +178,48 @@ class ReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
 			self.showQRCodeBounds(frame: qrCodeObject?.bounds)
         }
     }
+	
+	
+	
+	// MARK: - Detect QR Code From Static Image
+	// https://stackoverflow.com/a/49275021/458205
+	
+	/// Detect a QR Code in a static image
+	/// - Parameter image: The image to scan for QR codes
+	/// - Returns: The found QR code details
+	func detectQRCode(_ image: UIImage?) -> [CIFeature]?
+	{
+		if let image = image, let ciImage = CIImage.init(image: image)
+		{
+			var options: [String: Any]
+			
+			let context = CIContext()
+			options = [CIDetectorAccuracy: CIDetectorAccuracyHigh]
+			
+			let qrDetector = CIDetector(ofType: CIDetectorTypeQRCode, context: context, options: options)
+			
+			if ciImage.properties.keys.contains((kCGImagePropertyOrientation as String))
+			{
+				options = [CIDetectorImageOrientation: ciImage.properties[(kCGImagePropertyOrientation as String)] ?? 1]
+			}
+			else {
+				options = [CIDetectorImageOrientation: 1]
+			}
+			
+			let features = qrDetector?.features(in: ciImage, options: options)
+			return features
+		}
+		
+		return nil
+	}
+	/*
+	 Usage:
+	 let exampleImage: UIImage = ....
+	 
+	 if let features = detectQRCode(exampleImage), !features.isEmpty {
+		 for case let row as CIQRCodeFeature in features {
+			 print(row.messageString ?? "Contents failed to decode")
+		 }
+	 }
+	 */
 }

@@ -14,6 +14,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
+		
+		// - Fix stupid default transparent iOS 15 tab bar
+		if #available(iOS 13.0, *) {
+			let tabBarAppearance: UITabBarAppearance = UITabBarAppearance()
+			tabBarAppearance.configureWithOpaqueBackground()
+			UITabBar.appearance().standardAppearance = tabBarAppearance
+			
+			if #available(iOS 15.0, *) {
+				UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+			}
+		}
+		
+		// - Fix stupid default transparent iOS 15 navigation bar
+		if #available(iOS 14, *) {
+			let appearance: UINavigationBarAppearance = UINavigationBarAppearance()
+			appearance.configureWithOpaqueBackground()
+			
+			UINavigationBar.appearance().standardAppearance = appearance
+			UINavigationBar.appearance().scrollEdgeAppearance = appearance
+		}
+		
 		return true
 	}
 
