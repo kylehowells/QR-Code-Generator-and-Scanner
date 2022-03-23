@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CCD3B32227EAC2D5002CB2A4 /* CustomDesignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD3B32127EAC2D5002CB2A4 /* CustomDesignViewController.swift */; };
 		CCD40D7723BBFFDA004ACDD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD40D7623BBFFDA004ACDD7 /* AppDelegate.swift */; };
 		CCD40D7923BBFFDA004ACDD7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD40D7823BBFFDA004ACDD7 /* SceneDelegate.swift */; };
 		CCD40D7B23BBFFDA004ACDD7 /* GeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD40D7A23BBFFDA004ACDD7 /* GeneratorViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CCD3B32127EAC2D5002CB2A4 /* CustomDesignViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDesignViewController.swift; sourceTree = "<group>"; };
 		CCD40D7323BBFFDA004ACDD7 /* QR Codes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QR Codes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCD40D7623BBFFDA004ACDD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CCD40D7823BBFFDA004ACDD7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				CCD40D7823BBFFDA004ACDD7 /* SceneDelegate.swift */,
 				CCD40D7A23BBFFDA004ACDD7 /* GeneratorViewController.swift */,
 				CCD40D7C23BBFFDA004ACDD7 /* ReaderViewController.swift */,
+				CCD3B32127EAC2D5002CB2A4 /* CustomDesignViewController.swift */,
 				CCD40D7E23BBFFDA004ACDD7 /* Main.storyboard */,
 				CCD40D8123BBFFDD004ACDD7 /* Assets.xcassets */,
 				CCD40D8323BBFFDD004ACDD7 /* LaunchScreen.storyboard */,
@@ -145,6 +148,7 @@
 				CCD40D7B23BBFFDA004ACDD7 /* GeneratorViewController.swift in Sources */,
 				CCD40D7723BBFFDA004ACDD7 /* AppDelegate.swift in Sources */,
 				CCD40D7923BBFFDA004ACDD7 /* SceneDelegate.swift in Sources */,
+				CCD3B32227EAC2D5002CB2A4 /* CustomDesignViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

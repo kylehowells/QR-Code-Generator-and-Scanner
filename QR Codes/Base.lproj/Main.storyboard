@@ -1,12 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Custom Design-->
+        <scene sceneID="u7y-l1-NXn">
+            <objects>
+                <viewController id="0h0-cd-Qve" customClass="CustomDesignViewController" customModule="QR_Codes" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vpZ-It-R4D">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" axis="vertical" distribution="fillEqually" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="q0t-BW-UzZ">
+                                <rect key="frame" x="26" y="74.5" width="362" height="728.5"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QF1-L3-EOK">
+                                        <rect key="frame" x="0.0" y="0.0" width="362" height="362.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="QF1-L3-EOK" secondAttribute="height" multiplier="1:1" id="Sds-iW-YNk"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zpd-Kf-LrG">
+                                        <rect key="frame" x="0.0" y="366.5" width="362" height="362"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="zpd-Kf-LrG" secondAttribute="height" multiplier="1:1" id="tvp-dg-h5L"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="752" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7T0-x7-Fk1">
+                                <rect key="frame" x="186.5" y="44" width="41.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="rKQ-Vh-Hn9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="7T0-x7-Fk1" firstAttribute="centerX" secondItem="rKQ-Vh-Hn9" secondAttribute="centerX" id="6aE-Za-mZA"/>
+                            <constraint firstItem="q0t-BW-UzZ" firstAttribute="top" secondItem="7T0-x7-Fk1" secondAttribute="bottom" constant="10" id="Jlk-MB-r1I"/>
+                            <constraint firstItem="q0t-BW-UzZ" firstAttribute="height" relation="lessThanOrEqual" secondItem="rKQ-Vh-Hn9" secondAttribute="height" id="K8z-s0-Pmj"/>
+                            <constraint firstItem="q0t-BW-UzZ" firstAttribute="centerX" secondItem="rKQ-Vh-Hn9" secondAttribute="centerX" id="Xfq-hB-rGD"/>
+                            <constraint firstItem="7T0-x7-Fk1" firstAttribute="top" secondItem="rKQ-Vh-Hn9" secondAttribute="top" id="e4B-BE-wFk"/>
+                            <constraint firstItem="rKQ-Vh-Hn9" firstAttribute="bottom" secondItem="q0t-BW-UzZ" secondAttribute="bottom" constant="10" id="xTH-lL-Vvf"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Custom Design" image="paintpalette" catalog="system" id="iHQ-jH-8qe"/>
+                    <connections>
+                        <outlet property="customImageView" destination="zpd-Kf-LrG" id="fyz-9K-rPB"/>
+                        <outlet property="exampleLabel" destination="7T0-x7-Fk1" id="BXb-W9-q9a"/>
+                        <outlet property="normalImageView" destination="QF1-L3-EOK" id="l3Y-Mz-frY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LGL-gQ-CPk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="747.82608695652175" y="-1021.2053571428571"/>
+        </scene>
         <!--Generate QR Code-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
@@ -28,26 +84,26 @@
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="23q-dP-Pgh">
-                                        <rect key="frame" x="30" y="394" width="354" height="247.5"/>
+                                        <rect key="frame" x="30" y="394" width="354" height="244"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" text="Hello World!" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TQG-6N-6C2">
                                                 <rect key="frame" x="0.0" y="0.0" width="354" height="180"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="180" id="uPV-c9-UaE"/>
                                                 </constraints>
-                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" systemColor="labelColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Correction Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ISF-Ep-H3i">
-                                                <rect key="frame" x="0.0" y="188" width="354" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="188" width="354" height="17"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="8QI-8S-3o0">
-                                                <rect key="frame" x="0.0" y="216.5" width="354" height="32"/>
+                                                <rect key="frame" x="0.0" y="213" width="354" height="32"/>
                                                 <segments>
                                                     <segment title="L"/>
                                                     <segment title="M"/>
@@ -71,6 +127,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="Il1-zp-6rZ"/>
                             </scrollView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                         <color key="backgroundColor" red="0.95686274509803915" green="0.96862745098039216" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="tbw-zc-41L" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" id="5Hl-aT-ZfS"/>
@@ -83,7 +140,6 @@
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="jkX-gb-Z6z" secondAttribute="trailing" priority="900" constant="30" id="tbl-6D-dY6"/>
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="tbw-zc-41L" secondAttribute="trailing" id="v62-b6-DGB"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Generate QR Code" image="qrcode" catalog="system" id="acW-dT-cKf"/>
                     <connections>
@@ -107,22 +163,22 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n5z-wA-jD8">
                                 <rect key="frame" x="0.0" y="44" width="414" height="537.5"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="900" constant="40" id="vU0-1b-eeZ"/>
                                 </constraints>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="INB-lT-sbJ">
                                 <rect key="frame" x="16" y="627.5" width="382" height="175.5"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES" shipmentTrackingNumber="YES" flightNumber="YES" lookupSuggestion="YES"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKc-Nh-hfB">
-                                <rect key="frame" x="161.5" y="589.5" width="91" height="30"/>
-                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKc-Nh-hfB">
+                                <rect key="frame" x="162" y="589.5" width="90" height="30"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="6" maxX="10" maxY="6"/>
                                 <state key="normal" title="Start/Stop"/>
@@ -131,6 +187,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                         <color key="backgroundColor" red="0.95686274509803915" green="0.96862745098039216" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="O1u-W8-tvY" firstAttribute="trailing" secondItem="INB-lT-sbJ" secondAttribute="trailing" constant="16" id="03j-5s-S3t"/>
@@ -144,7 +201,6 @@
                             <constraint firstItem="mKc-Nh-hfB" firstAttribute="centerX" secondItem="O1u-W8-tvY" secondAttribute="centerX" id="oZW-1c-Gst"/>
                             <constraint firstItem="O1u-W8-tvY" firstAttribute="trailing" secondItem="n5z-wA-jD8" secondAttribute="trailing" id="p9B-Yz-MmM"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Scan QR Code" image="qrcode.viewfinder" catalog="system" id="cPa-gy-q4n"/>
                     <connections>
@@ -170,15 +226,26 @@
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="0h0-cd-Qve" kind="relationship" relationship="viewControllers" id="Khv-5c-9vp"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="0.0"/>
+            <point key="canvasLocation" x="-375" y="-238"/>
         </scene>
     </scenes>
     <resources>
-        <image name="qrcode" catalog="system" width="64" height="56"/>
-        <image name="qrcode.viewfinder" catalog="system" width="64" height="56"/>
+        <image name="paintpalette" catalog="system" width="128" height="105"/>
+        <image name="qrcode" catalog="system" width="128" height="114"/>
+        <image name="qrcode.viewfinder" catalog="system" width="128" height="115"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
