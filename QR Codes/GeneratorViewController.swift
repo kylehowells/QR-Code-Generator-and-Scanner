@@ -63,6 +63,7 @@ class GeneratorViewController: UIViewController, UITextViewDelegate {
 	/// - Parameter text: The text to turn into a QRCode
 	func createQRCodeForString(_ text: String) -> CIImage? {
 		let data = text.data(using: .isoLatin1)
+		//let data = text.data(using: .utf8)
 		
 		let qrFilter = CIFilter(name: "CIQRCodeGenerator")
 		// Input text

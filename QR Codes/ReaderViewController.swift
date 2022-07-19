@@ -10,10 +10,13 @@ import UIKit
 import AVFoundation
 
 class ReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+	
 	@IBOutlet weak var cameraContainerView: UIView!
 	@IBOutlet weak var cameraContainerHeightConstraint: NSLayoutConstraint!
+	
 	@IBOutlet weak var startStopButton: UIButton!
 	@IBOutlet weak var outputTextView: UITextView!
+	
 	var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     
@@ -23,7 +26,8 @@ class ReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         view.layer.borderWidth = 3
         return view
     }()
-
+	
+	
 	// MARK: View Life Cycle
 	
 	override func viewDidLoad() {
@@ -54,7 +58,7 @@ class ReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
 
 		// Now the camera is setup add a metadata output
         let metadataOutput = AVCaptureMetadataOutput()
-
+		
 		if (self.captureSession.canAddOutput(metadataOutput)) {
 			self.captureSession.addOutput(metadataOutput)
 
@@ -64,10 +68,10 @@ class ReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
 			self.failed()
             return
         }
-
+		
 		// Setup the UI to show the camera
 		self.previewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
-		self.previewLayer.frame = view.layer.bounds
+		self.previewLayer.frame = self.view.layer.bounds
 		self.previewLayer.videoGravity = .resizeAspectFill
 		self.cameraContainerView.layer.addSublayer(self.previewLayer)
 
@@ -85,6 +89,7 @@ class ReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
 		super.viewDidLayoutSubviews()
 		
 		self.previewLayer?.frame = self.cameraContainerView.layer.bounds
+		
 		// Fix orientation
 		if let connection = self.previewLayer?.connection {
 			let orientation = self.view.window?.windowScene?.interfaceOrientation ?? UIInterfaceOrientation.portrait
@@ -142,7 +147,8 @@ class ReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
 	func failed() {
         let ac = UIAlertController(title: "Scanning failed", message: nil, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Dismiss", style: .default))
-        present(ac, animated: true)
+		self.present(ac, animated: true)
+		
 		self.captureSession = nil
     }
     
@@ -174,7 +180,7 @@ class ReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             }
             
             // Show bounds
-			let qrCodeObject = self.previewLayer.transformedMetadataObject(for: readableObject)
+			let qrCodeObject: AVMetadataObject? = self.previewLayer.transformedMetadataObject(for: readableObject)
 			self.showQRCodeBounds(frame: qrCodeObject?.bounds)
         }
     }
@@ -212,6 +218,7 @@ class ReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
 		
 		return nil
 	}
+	
 	/*
 	 Usage:
 	 let exampleImage: UIImage = ....
