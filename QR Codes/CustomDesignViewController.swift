@@ -52,6 +52,7 @@ class CustomDesignViewController: UIViewController {
 	/// - Parameter text: The text to turn into a QRCode
 	func createQRCodeForString(_ text: String, correctionLevel: ErrorCorrectionLevel = ErrorCorrectionLevel.mid) -> CIImage? {
 		let data = text.data(using: .isoLatin1)
+		//let data = text.data(using: .utf8)
 		
 		let qrFilter = CIFilter(name: "CIQRCodeGenerator")
 		// Input text
@@ -113,14 +114,14 @@ class CustomDesignViewController: UIViewController {
 	/// - Returns: The PixelGrid for that image
 	private func getQRGrid(image: CIImage) -> PixelGrid?
 	{
-		guard let cgImage = self.convertCIImageToCGImage(inputImage: image) else {
+		guard let cgImage:CGImage = image.kh_convertToCGImage() else {
 			print("Failed to create CGImage")
 			return nil
 		}
 		
 		// - Greyscale
 		
-		guard let (imagePixels, pixelsWidth, pixelsHeight) = self.getGreyScalePixelValues(fromCGImage: cgImage), (pixelsWidth == pixelsHeight) else {
+		guard let (imagePixels, pixelsWidth, pixelsHeight) = cgImage.kh_getGreyScalePixelValues(), (pixelsWidth == pixelsHeight) else {
 			return nil
 		}
 		
@@ -336,60 +337,6 @@ class CustomDesignViewController: UIViewController {
 	}
 	
 	
-	
-	
-	
-	
-	// MARK: - Helpers
-	
-	private func convertCIImageToCGImage(inputImage: CIImage) -> CGImage? {
-		//let context = CIContext(options: nil)
-		let context = CIContext(options: [CIContextOption.useSoftwareRenderer: false])
-		
-		if let cgImage = context.createCGImage(inputImage, from: inputImage.extent) {
-			return cgImage
-		}
-		
-		return nil
-	}
-	
-	
-	// MARK: - Get Pixels From Grey Scale Image
-	
-	/// Converts the image to greyscale and gets the pixel values for each pixel in the image
-	/// - Parameter imageRef: The CGImage
-	/// - Returns: The pixel array, the width of the image, and the height of the image
-	private func getGreyScalePixelValues(fromCGImage imageRef: CGImage?) -> (pixelValues: [UInt8], width: Int, height: Int)?
-	{
-		guard let imageRef = imageRef else { return nil }
-		
-		let imageWidth: Int = imageRef.width
-		let imageHeight: Int = imageRef.height
-		let bounds: CGRect = CGRect(x: 0.0, y: 0.0, width: CGFloat(imageWidth), height: CGFloat(imageHeight))
-		
-		let bitsPerComponent: Int = 8 // imageRef.bitsPerComponent
-		let bytesPerRow: Int = 1 * imageWidth // imageRef.bytesPerRow
-		let totalBytes: Int = imageHeight * bytesPerRow
-		
-		let colorSpace: CGColorSpace = CGColorSpaceCreateDeviceGray()
-		let bitmapInfo: UInt32 = CGBitmapInfo(rawValue: CGImageAlphaInfo.none.rawValue).rawValue
-		
-		var pixelValues = [UInt8](repeating: 0, count: totalBytes)
-		
-		let contextRef = CGContext(
-			data: &pixelValues,
-			width: imageWidth,
-			height: imageHeight,
-			bitsPerComponent: bitsPerComponent,
-			bytesPerRow: bytesPerRow,
-			space: colorSpace,
-			bitmapInfo: bitmapInfo
-		)
-		
-		contextRef?.draw(imageRef, in: bounds)
-		
-		return (pixelValues, imageWidth, imageHeight)
-	}
 	
 	
 	// MARK: - Print QRCode Grid

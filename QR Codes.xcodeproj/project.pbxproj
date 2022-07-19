@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CCBE8173281F3A1500696AAA /* UIImage+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE8172281F3A1500696AAA /* UIImage+Helpers.swift */; };
 		CCD3B32227EAC2D5002CB2A4 /* CustomDesignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD3B32127EAC2D5002CB2A4 /* CustomDesignViewController.swift */; };
 		CCD40D7723BBFFDA004ACDD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD40D7623BBFFDA004ACDD7 /* AppDelegate.swift */; };
 		CCD40D7923BBFFDA004ACDD7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD40D7823BBFFDA004ACDD7 /* SceneDelegate.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CCBE8172281F3A1500696AAA /* UIImage+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Helpers.swift"; sourceTree = "<group>"; };
 		CCD3B32127EAC2D5002CB2A4 /* CustomDesignViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDesignViewController.swift; sourceTree = "<group>"; };
 		CCD40D7323BBFFDA004ACDD7 /* QR Codes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QR Codes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCD40D7623BBFFDA004ACDD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				CCD40D7A23BBFFDA004ACDD7 /* GeneratorViewController.swift */,
 				CCD40D7C23BBFFDA004ACDD7 /* ReaderViewController.swift */,
 				CCD3B32127EAC2D5002CB2A4 /* CustomDesignViewController.swift */,
+				CCBE8172281F3A1500696AAA /* UIImage+Helpers.swift */,
 				CCD40D7E23BBFFDA004ACDD7 /* Main.storyboard */,
 				CCD40D8123BBFFDD004ACDD7 /* Assets.xcassets */,
 				CCD40D8323BBFFDD004ACDD7 /* LaunchScreen.storyboard */,
@@ -145,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCD40D7D23BBFFDA004ACDD7 /* ReaderViewController.swift in Sources */,
+				CCBE8173281F3A1500696AAA /* UIImage+Helpers.swift in Sources */,
 				CCD40D7B23BBFFDA004ACDD7 /* GeneratorViewController.swift in Sources */,
 				CCD40D7723BBFFDA004ACDD7 /* AppDelegate.swift in Sources */,
 				CCD40D7923BBFFDA004ACDD7 /* SceneDelegate.swift in Sources */,
@@ -300,7 +304,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ikyle.QR-Codes";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ikyle.QR-Codes-old";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -320,7 +324,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ikyle.QR-Codes";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ikyle.QR-Codes-old";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
