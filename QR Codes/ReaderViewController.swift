@@ -36,7 +36,8 @@ class ReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
 		self.view.backgroundColor = UIColor.black
 		
 		// Setup Camera Capture
-		self.captureSession = AVCaptureSession()
+		let captureSession = AVCaptureSession()
+		self.captureSession = captureSession
 		
 		// Get the default camera (there are normally between 2 to 4 camera 'devices' on iPhones)
         guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
@@ -74,11 +75,13 @@ class ReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
 		self.previewLayer.frame = self.view.layer.bounds
 		self.previewLayer.videoGravity = .resizeAspectFill
 		self.cameraContainerView.layer.addSublayer(self.previewLayer)
-
+		
 		self.qrCodeBounds.alpha = 0
 		self.cameraContainerView.addSubview(self.qrCodeBounds)
-        
-		self.captureSession.startRunning()
+		
+		DispatchQueue.global(qos: .background).async(execute: {
+			captureSession.startRunning()
+		})
 	}
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
